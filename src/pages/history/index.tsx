@@ -2,10 +2,11 @@ import Header from '../../components/header';
 import styles from './styles.module.css';
 
 function History(){
+    const start = JSON.parse(localStorage.getItem('start') as any);
 
     return (
         <div className={styles.container}>
-            <Header pageName='Histórico' goBack={true}/>
+            <Header status={start} pageName='Histórico' goBack={true}/>
         </div>
     );
 

@@ -25,7 +25,6 @@ interface AuthProviderProps {
 export const AuthContext = createContext({} as AuthContextData);
 
 export function SignOut(){
-
     localStorage.removeItem("auth.token");
     localStorage.removeItem("auth.refresh_token");
     localStorage.removeItem("auth.user_id");

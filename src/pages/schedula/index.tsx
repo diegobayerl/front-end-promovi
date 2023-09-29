@@ -3,6 +3,7 @@ import PopUp from '../../components/popup';
 import styles from './styles.module.css';
 
 function Schedula(){
+    const start = JSON.parse(localStorage.getItem('start') as any);
 
     const agenda ={
         name: 'diego',
@@ -11,7 +12,7 @@ function Schedula(){
 
     return (
         <div className={styles.container}>
-            <Header pageName='Agenda' goBack={true}/>
+            <Header status={start} pageName='Agenda' goBack={true}/>
             
             <div className={styles.boxCard}>
                 <div className={styles.card}>

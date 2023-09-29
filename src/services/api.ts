@@ -62,5 +62,5 @@ api.interceptors.response.use(response =>{
        }
     }
     
-    return history.go(-1), Promise.reject(error)
+    return Promise.reject(error)
 })
