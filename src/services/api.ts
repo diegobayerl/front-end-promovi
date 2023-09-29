@@ -1,15 +1,9 @@
 import axios, { AxiosError } from "axios";
-
-interface ErrorResponse {
-    response?:{
-        status: number;
-        data?:{
-            message?: string;
-        }
-    }
-}
+import { SignOut } from "../contexts/AuthContext";
 
 const token = localStorage.getItem('auth.token');
+let isRefrash = false;
+let failedRequestQueue = [];
 
 export const api = axios.create({
     baseURL: "http://localhost:3333",
@@ -20,25 +14,53 @@ export const api = axios.create({
 
 api.interceptors.response.use(response =>{
     return response;
-}, (error: ErrorResponse) =>{
+}, (error: AxiosError) =>{
     if(error.response?.status === 401){
        if(error.response?.data?.message === 'Invalid token'){
             const token = localStorage.getItem('auth.refresh_token');
-            
-            api.post('/refrash-token', {
-                token
-            }).then(response => {
-                console.log(response)
-                const new_token = response.data.token;
-                const new_refrash = response.data.refresh_token;
+            const originalConfig = error.config;
 
-                localStorage.setItem("auth.token", new_token);
-                localStorage.setItem("auth.refresh_token", new_refrash);
+            if(!isRefrash){
+                isRefrash = true;
 
+                api.post('/refrash-token', {
+                    token
+                }).then(response => {
+                    const new_token = response.data.token;
+                    const new_refrash = response.data.refresh_token;
+    
+                    localStorage.setItem("auth.token", new_token);
+                    localStorage.setItem("auth.refresh_token", new_refrash);
+    
+                    api.defaults.headers["Authorization"] = `Bearer ${new_token}`;
+                    
+                    failedRequestQueue.forEach(request => request.onSucces(new_token));
+                    failedRequestQueue = [];
+                }).catch(err => {
+                    failedRequestQueue.forEach(request => request.onFailure(err));
+                    failedRequestQueue = [];
+                }).finally(() => {
+                    isRefrash = false;
+                });
+            }
+
+        return new Promise((resolve, reject) =>{
+            failedRequestQueue.push({
+                onSucces: (token: string) => {
+                    originalConfig.headers["Authorization"] = `Bearer ${token}`;
+
+                    resolve(api(originalConfig));
+                },
+                onFailure: (err: AxiosError) => {
+                    reject(err);
+                }
             })
+        })
 
        } else {
-
+            SignOut();
        }
     }
+    
+    return history.go(-1), Promise.reject(error)
 })

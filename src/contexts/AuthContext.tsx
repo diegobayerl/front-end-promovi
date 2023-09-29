@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { api } from "../services/api";
 
 interface User {
@@ -24,22 +24,32 @@ interface AuthProviderProps {
 
 export const AuthContext = createContext({} as AuthContextData);
 
+export function SignOut(){
+
+    localStorage.removeItem("auth.token");
+    localStorage.removeItem("auth.refresh_token");
+    localStorage.removeItem("auth.user_id");
+}
+
 export function AuthProvider({children}: AuthProviderProps){
 
+    const [user, setUser] = useState<User>();
     const navigate = useNavigate();
 
-    const [user, setUser] = useState<User>();
+    useEffect(() => {
+        const id = localStorage.getItem('auth.user_id');
 
-    useEffect(()=> {
-        const id = localStorage.getItem("auth.user_id");
+        if(!!id){
+            api.get(`/user/${id}`).then(resonse => {
+                setUser(resonse.data);
+            })
+        } else {
+            navigate('/');
+        }
 
-        api.get(`/user/${id}`).then(response => {
-            setUser(response.data);
-        })
+    }, []);  
 
-    },[])
-
-    const isAthenticated = !!user;
+    const isAthenticated = !!localStorage.getItem('auth.user_id');
 
     async function signIn({email, password}: Data){
 
@@ -49,8 +59,6 @@ export function AuthProvider({children}: AuthProviderProps){
                 password,
             });
 
-            console.log(response.data)
-
             localStorage.setItem("auth.token", response.data.token);
             localStorage.setItem("auth.refresh_token", response.data.refresh_token);
             localStorage.setItem("auth.user_id", response.data.user.id);
@@ -58,7 +66,6 @@ export function AuthProvider({children}: AuthProviderProps){
             setUser(response.data.user);
 
             api.defaults.headers["Authorization"] = `Bearer ${response.data.token}`
-
             navigate("/home")
         } catch (err) {
             console.log(err);
