@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 function Home() {
   const navigate = useNavigate();
-  const [start, setStart] = useState(JSON.parse(localStorage.getItem('start') as any));
+  const [start,] = useState(JSON.parse(localStorage.getItem('start') as any));
   localStorage.setItem('start', start);
 
     return (
@@ -17,7 +17,7 @@ function Home() {
             <button onClick={()=> {
   
             }} className={styles.menu}>Relatório diário</button>
-            <button className={styles.menu}>Adicionar vendas</button>
+            <button onClick={()=> navigate('/sales')} className={styles.menu}>Adicionar vendas</button>
             <strong>Para encerrar espediente, basta precionar o botão a baixo.</strong>
           </>
         ): (
@@ -30,8 +30,8 @@ function Home() {
         
         {start ? (
           <button style={{backgroundColor: 'var(--red-200)'}} onClick={()=> {
-            setStart(false);
-            }}>
+            navigate('/finish');
+          }}>
               Finalizar
           </button>
         ):(

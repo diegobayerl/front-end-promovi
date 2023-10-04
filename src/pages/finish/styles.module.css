@@ -23,6 +23,7 @@
 
 .container form label {
     font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .container form div {
@@ -36,25 +37,13 @@
     margin: 1.5rem 0 1.5rem 0;
 }
 
-.container form div select {
-    width: 15vw;
-    height: 4rem;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    padding-left: 1rem;
-}
-
-.container form strong {
-    margin-top: 1rem;
-}
-
 .container form div button {
     width: 15vw;
     height: 4rem;
 
     font-size: 1.2rem;
 
-    background: var(--green-200);
+    background: var(--red-200);
 
     border: none;
 
@@ -65,30 +54,25 @@
 
 @media (max-width: 1024px) {
     .container form {
-        background: none;
         width: 100%;
-
+    
+        background: none;
+    
+        padding: 2rem;
+    
         border-radius: 0;
-
+    
         box-shadow: 0 0 0;
     }
 
-    .container form div select {
-        width: 100%;
-        font-size: 1.2rem;
-        padding-left: 1rem;
-
-        background: var(--white);
-    }
-
     .container form strong {
-        font-size: 1.2rem;
-        margin-bottom: 1.2rem;
+        font-size: 1.4rem;
+
+        margin: 1rem 1rem
     }
 
     .container form div button {
         width: 100%;
         font-size: 1.5rem;
     }
-    
 }

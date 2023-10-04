@@ -41,7 +41,11 @@ export function AuthProvider({children}: AuthProviderProps){
         if(!!id){
             api.get(`/user/${id}`).then(resonse => {
                 setUser(resonse.data);
-            })
+            });
+
+            api.get(`/company/employee/${id}`).then(response => {
+                localStorage.setItem('id.company', response.data.company.id)
+            });
         } else {
             navigate('/');
         }

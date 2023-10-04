@@ -1,0 +1,9 @@
+
+button.details {
+    background: transparent;
+    border: none;
+
+    color: var(--red-200);
+
+    font-weight: 700;
+}
