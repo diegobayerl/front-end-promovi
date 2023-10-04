@@ -1,0 +1,78 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+}
+
+.body {
+    width: 50%;
+    background: var(--white);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 3rem 3rem;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.title h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+.title strong {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.body form {
+    width: 50%;
+}
+
+.body form label {
+    font-size: 0.8rem;
+    color: var(--red-200);
+}
+
+.body form input {
+    width: 100%;
+    height: 3rem;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 1px solid var(--gray-400);
+    border-radius: 0.2rem;
+    padding-left: 1rem;
+
+    margin-bottom: 0.8rem;
+}
+
+.body form input::placeholder {
+    color: var(--gray-400);
+}
+
+.body form button[type='submit'] {
+    width: 100%;
+    height: 3rem;
+
+    color: var(--white);
+    font-size: 1.3rem;
+    font-weight: 500;
+    background: var(--purple-200);
+    border: 1px solid var(--gray-400);
+    border-radius: 0.2rem;
+
+    margin-bottom: 1rem;
+}
+
+.body form button[type='submit']:disabled {
+    opacity: 0.6;
+}

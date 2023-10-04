@@ -4,6 +4,8 @@ import { FormEvent, useEffect, useState } from "react";
 import { api } from "../../services/api";
 import Product from "../types/product";
 
+import styles from './styles.module.css';
+
 function Details(){
     const navigate = useNavigate();
 
@@ -35,16 +37,21 @@ function Details(){
     }
 
     return(
-        <div>
-            <Header goBack={true} pageName="Adicionar" status={true}/>
-            <div>
-                <h1>{product?.category}</h1>
-                <strong>{product?.description}</strong>
+        <div className={styles.container}>
+            <Header goBack={true} pageName="Cadastrar venda" status={true}/>
+            <div className={styles.body}>
+                <div className={styles.title}>
+                    <h1>{product?.category}</h1>
+                    <strong>{product?.description}</strong>
+                </div>
+                <form onSubmit={handlesubmit}>
+                    {amount === '0' || amount === '' && (
+                        <label>*o valor da quantidade não pode ser zero</label>
+                    )}
+                    <input placeholder="digite a quantidade" value={amount} onChange={event => setAmount(event.target.value)} type="number" />
+                    <button disabled={amount === '0' ||amount === ''} type="submit">Cadastrar</button>
+                </form>
             </div>
-            <form onSubmit={handlesubmit}>
-                <input placeholder="digite a quantidade" value={amount} onChange={event => setAmount(event.target.value)} type="number" />
-                <button type="submit">Enviar</button>
-            </form>
         </div>
     )
 }

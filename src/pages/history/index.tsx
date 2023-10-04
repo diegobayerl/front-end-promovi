@@ -3,6 +3,7 @@ import Header from '../../components/header';
 import styles from './styles.module.css';
 import { api } from '../../services/api';
 import Sale from '../types/sale';
+import ShimmerLoader from '../../components/shimmer';
 
 function History(){
     const id = localStorage.getItem('auth.user_id');
@@ -16,24 +17,42 @@ function History(){
     
     return (
         <div className={styles.container}>
-            <Header status={true} pageName='Histórico' goBack={true}/>
-            {sales.map(item => {
-                return (
-                    <div key={item.id}>
-                        <div>
-                            <div>
-                                <h1>{item.product.category}</h1>
-                                <strong>{item.amount}</strong>
+            <Header status={false} pageName='Histórico de vendas' goBack={true}/>
+            <div className={styles.body}>
+            {!sales ? (
+                <>
+                    <ShimmerLoader />
+                    <ShimmerLoader />
+                    <ShimmerLoader />
+                </>
+            ):(
+               <>
+                {sales.map(item => {
+                    return (
+                        <div className={styles.boxContainer} key={item.id}>
+                            <div className={styles.card}>
+                                <div className={styles.title}>
+                                    <h1>{item.product.category}</h1>
+                                    <strong>{item.amount} unidades</strong>
+                                </div>
+                                <strong>{item.product.description}</strong>
                             </div>
-                            <strong>Description</strong>
+                            <hr/>
                         </div>
-                        <hr />
-                    </div>
-                );
-            })}
+                        
+                    );
+                })}
+                </>
+            )}
+            </div>
         </div>
     );
 
 }
 
 export default History;
+
+/**
+ * 
+ * 
+ */
