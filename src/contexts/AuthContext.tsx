@@ -28,6 +28,8 @@ export function SignOut(){
     localStorage.removeItem("auth.token");
     localStorage.removeItem("auth.refresh_token");
     localStorage.removeItem("auth.user_id");
+    localStorage.removeItem('name.company');
+    localStorage.removeItem('id.company');
 }
 
 export function AuthProvider({children}: AuthProviderProps){
@@ -37,7 +39,6 @@ export function AuthProvider({children}: AuthProviderProps){
 
     useEffect(() => {
         const id = localStorage.getItem('auth.user_id');
-
         if(!!id){
             api.get(`/user/${id}`).then(resonse => {
                 setUser(resonse.data);
@@ -45,6 +46,7 @@ export function AuthProvider({children}: AuthProviderProps){
 
             api.get(`/company/employee/${id}`).then(response => {
                 localStorage.setItem('id.company', response.data.company.id)
+                localStorage.setItem('name.company', response.data.company.name)
             });
         } else {
             navigate('/');

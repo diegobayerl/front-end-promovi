@@ -5,19 +5,21 @@ import { api } from '../../services/api';
 import Sale from '../types/sale';
 import ShimmerLoader from '../../components/shimmer';
 
-function History(){
+function Nuntiare(){
     const id = localStorage.getItem('auth.user_id');
     const [sales, setSales] = useState<Sale[]>([]);
 
+    const date = new Date();
+
     useEffect(() => {
-        api.get(`/sale/user/${id}`).then(response => {
+        api.get(`/sale/date?one=${date}&two=${date}&id=${id}`).then(response => {
             setSales(response.data);
         });
     }, []);
     
     return (
         <div className={styles.container}>
-            <Header status={false} pageName='Histórico de vendas' goBack={true}/>
+            <Header status={true} pageName='Relatório de vendas' goBack={true}/>
             <div className={styles.body}>
             {!sales ? (
                 <>
@@ -50,4 +52,9 @@ function History(){
 
 }
 
-export default History;
+export default Nuntiare;
+
+/**
+ * 
+ * 
+ */

@@ -13,6 +13,8 @@ function Details(){
 
     const user_id = localStorage.getItem('auth.user_id');
     const company_id = localStorage.getItem('id.company');
+    const schedula_id = localStorage.getItem('id.schedula');
+
     const [amount, setAmount] = useState('')
 
     const [product, setProduct] = useState<Product>()
@@ -30,6 +32,7 @@ function Details(){
             user_id,
             company_id,
             product_id: id,
+            schedula_id,
             amount: Number(amount),
         });
 

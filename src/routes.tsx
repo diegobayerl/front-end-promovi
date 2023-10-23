@@ -9,6 +9,9 @@ import Start from "./pages/start";
 import Finish from "./pages/finish";
 import AddSales from "./pages/addSales";
 import Details from "./pages/detailsAddSales";
+import Nuntiare from "./pages/nuntiare";
+import CreateSchedula from "./pages/createSchedula";
+import SignUp from "./pages/signUp";
 
 export default function Router() {
    
@@ -17,6 +20,7 @@ export default function Router() {
             <AuthProvider>
                 <Routes>
                     <Route element={<SignIn />} path="/"/>
+                    <Route element={<SignUp/>} path="/signUp"/>
                     <Route element={<Home/>} path="/home"/>
                     <Route element={<Schedulas/>} path="/schedula"/>
                     <Route element={<History/>} path="/history"/>
@@ -24,6 +28,8 @@ export default function Router() {
                     <Route element={<Finish/>} path="/finish"/>
                     <Route element={<AddSales/>} path="/sales"/>
                     <Route element={<Details/>} path="/sales/:id"/>
+                    <Route element={<Nuntiare/>} path="/nuntiare"/>
+                    <Route element={<CreateSchedula/>} path="/schedula/create"/>
                 </Routes>
             </AuthProvider>
         </BrowserRouter>

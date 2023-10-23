@@ -30,7 +30,7 @@
 }
 .title strong {
     font-size: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .body form {
@@ -75,4 +75,38 @@
 
 .body form button[type='submit']:disabled {
     opacity: 0.6;
+}
+
+@media (max-width: 1024px) {
+    .body {
+        width: 100%;
+
+        background: transparent;
+    }
+
+    .title strong {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .body form {
+        width: 95%;
+    }
+
+    .body form label {
+        font-size: 1rem;
+        color: var(--red-200);
+    }
+
+    .body form input {
+        height: 4rem;
+
+        background: var(--white);
+
+        margin-bottom: 2rem;
+    }
+
+    .body form button[type='submit'] {
+        height: 4rem;
+    }
 }

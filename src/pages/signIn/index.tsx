@@ -6,6 +6,7 @@ import logoPromovi from '../../assets/logo-promovi.svg';
 import styles from './styles.module.css';
 
 import { Lock, Person } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [email, setEmail] = useState('');
@@ -58,7 +59,7 @@ export default function Home() {
           <button>Esqueci minha senha</button>
           <hr/>
           <div>
-            <a>Não possui uma conta ?</a>
+            <Link to='signUp'>Não possui uma conta ?</Link>
           </div>
         </div>
       </div>

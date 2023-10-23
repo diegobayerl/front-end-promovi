@@ -14,9 +14,7 @@ function Home() {
         <Header pageName='Home' status={start} goBack={false} />
         {start ? (
           <>
-            <button onClick={()=> {
-  
-            }} className={styles.menu}>Relatório diário</button>
+            <button onClick={()=> navigate('/nuntiare')} className={styles.menu}>Relatório diário</button>
             <button onClick={()=> navigate('/sales')} className={styles.menu}>Adicionar vendas</button>
             <strong>Para encerrar espediente, basta precionar o botão a baixo.</strong>
           </>

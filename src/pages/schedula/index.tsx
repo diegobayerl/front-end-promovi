@@ -4,6 +4,7 @@ import PopUp from '../../components/popup';
 import styles from './styles.module.css';
 import { api } from '../../services/api';
 import Schedula from '../types/schedula';
+import { useNavigate } from 'react-router-dom';
 
 function Schedulas(){
     const start = JSON.parse(localStorage.getItem('start') as any);
@@ -12,8 +13,28 @@ function Schedulas(){
 
     const id = localStorage.getItem('auth.user_id')
 
+    const navigate = useNavigate();
+    
+    function getDateForWeek(date: Date){
+        const dayWeek = date.getDay();
+
+        date.setDate(date.getDate() - (dayWeek + 6)%7)
+
+        const dates = [];
+
+        for (let i = 0; i < 5; i++){
+            const currentDate = new Date(date);
+            currentDate.setDate(currentDate.getDate() + i);
+            dates.push(currentDate);
+        }
+
+        return dates;
+    }
+
     useEffect(() => {
-        api.get(`/user/schedulas/${id}`).then(response => {
+        const now = new Date();
+        const dates = getDateForWeek(now);
+        api.get(`/user/schedula/date?one=${dates[0]}&two=${dates[4]}&id=${id}`).then(response => {
             setSchedula(response.data);
         })
     }, []);
@@ -51,9 +72,10 @@ function Schedulas(){
                             <label>{item.status ? ('Concluido'): ('Pendente')}</label>
                             <PopUp item={item}/>
                         </div>
-                    </div>  
+                    </div>
                     )  
-                })}       
+                })}
+                <button onClick={() => navigate('/schedula/create')} className={styles.buttonCreate}>Nova tarefa</button>     
             </div>
         </div>
     );

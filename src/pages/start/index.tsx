@@ -54,6 +54,17 @@ function Start(){
       navigate('/home')
     }
 
+    function DateFormat(date: string){
+      const data = new Date(date);
+      const ano = data.getFullYear();
+      const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+      const dia = data.getDate().toString().padStart(2, '0');
+
+      const newDate = `${dia}/${mes}/${ano}`;
+
+      return newDate;
+    }
+
     return(
         <div className={styles.container}>
             <Header goBack={true} status={false} pageName='Iniciar Trabalho' />
@@ -66,7 +77,7 @@ function Start(){
                     {schedula.map(response => {
                       if(!response.status)
                         return (
-                            <option key={response.id} value={response.id}>{response.name}</option>
+                            <option key={response.id} value={response.id}>{response.name} - {DateFormat(response.date)}</option>
                         )
                     })}
                   </select>
