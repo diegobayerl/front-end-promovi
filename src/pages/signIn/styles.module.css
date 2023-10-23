@@ -132,7 +132,7 @@
     }
     .container img {
         margin-top: 3rem;
-        width: 70vw;
+        width: 56vw;
     }
     .boxContainer {
         
@@ -147,8 +147,8 @@
     }
 
     .boxContainer form div input {
-        height: 4rem;
-        font-size: 1.6rem;
+        height: 3rem;
+        font-size: 1rem;
     }
 
     .boxContainer form div svg {
@@ -157,13 +157,13 @@
     }
 
     .boxContainer form button[type='submit'] {
-        height: 4rem;
-        font-size: 1.5rem;
+        height: 3rem;
+        font-size: 1rem;
     }
 
     .boxContainer div button {
         margin-top: 2rem;
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
 
     .boxContainer div hr {
@@ -172,6 +172,6 @@
 
     .boxContainer div div a {
         margin-top: 1.5rem;
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
 }
