@@ -56,15 +56,17 @@
     }
 
     .box form input {
-        height: 4rem;
+        height: 3rem;
         background: var(--white);
+        font-size: 1rem;
     }
 
     .box form label {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .box form button[type='submit'] {
-        height: 4rem;
+        height: 3rem;
+        font-size: 1rem;
     }
 }

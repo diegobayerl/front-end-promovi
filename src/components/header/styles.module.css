@@ -32,12 +32,16 @@
 
 @media (max-width: 1024px) {
     .container {
-        height: 13vh;
+        height: 8vh;
 
         padding: 0 1.5rem 0 1.5rem;
     }
 
     .container img {
-        width: 4rem;
+        width: 3rem;
+    }
+
+    .container label {
+        font-size: 1.1rem;
     }
 }

@@ -44,7 +44,6 @@ function AddSales(){
                                         <strong>{item.description}</strong>
                                 </button>
                             </div>
-                            <hr />
                         </div>
                     )
                 })}

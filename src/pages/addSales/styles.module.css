@@ -5,29 +5,24 @@
 }
 
 .containerBox {
-    width: 64vw;
-    background: var(--white);
-
-    padding: 5rem 2.5rem 5rem 2.5rem;
-}
-
-.containerBox hr {
-    margin-bottom: 2.5rem;
+    width: 50vw;
 }
 
 .card {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
     width: 100%;
+    background: var(--white);
+
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+
+    padding: 1rem 1rem;
 }
 
 .card button {
     display: flex;
-    flex-direction: row;
-
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     
     width: 100%;
     height: 100%;
@@ -42,7 +37,7 @@
 }
 
 .card button h1 {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     margin-bottom: 0.5rem;
 }
 
@@ -58,10 +53,6 @@
         width: 100%;
 
         padding: 0.5rem;
-    }
-
-    .containerBox hr {
-        margin-bottom: 3rem;
     }
 
     .card button {

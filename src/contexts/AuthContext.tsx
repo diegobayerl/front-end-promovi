@@ -39,6 +39,7 @@ export function AuthProvider({children}: AuthProviderProps){
 
     useEffect(() => {
         const id = localStorage.getItem('auth.user_id');
+       
         if(!!id){
             api.get(`/user/${id}`).then(resonse => {
                 setUser(resonse.data);
@@ -58,12 +59,18 @@ export function AuthProvider({children}: AuthProviderProps){
 
     async function signIn({email, password}: Data){
 
+        let errEmplyee;
+
         try {
             const response = await api.post('session', {
                 email,
                 password,
             });
 
+            await api.get(`/company/employee/${response.data.user.id}`).catch(err => {
+                errEmplyee = err.response.status;
+            });
+            
             localStorage.setItem("auth.token", response.data.token);
             localStorage.setItem("auth.refresh_token", response.data.refresh_token);
             localStorage.setItem("auth.user_id", response.data.user.id);
@@ -71,7 +78,12 @@ export function AuthProvider({children}: AuthProviderProps){
             setUser(response.data.user);
 
             api.defaults.headers["Authorization"] = `Bearer ${response.data.token}`
-            navigate("/home")
+            if(errEmplyee === 500){
+                window.alert("Usuário ainda não possui vínculo com empresa no sistema: Comunicar contratante")
+            } else {
+                navigate("/home")
+            }
+            
         } catch (err) {
             console.log(err);
         }

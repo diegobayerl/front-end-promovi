@@ -39,7 +39,6 @@ function Nuntiare(){
                                 </div>
                                 <strong>{item.product.description}</strong>
                             </div>
-                            <hr/>
                         </div>
                         
                     );

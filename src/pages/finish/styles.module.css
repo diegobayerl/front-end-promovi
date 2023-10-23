@@ -65,14 +65,19 @@
         box-shadow: 0 0 0;
     }
 
+    .container form label {
+        font-size: 1rem;
+    }
+
     .container form strong {
-        font-size: 1.4rem;
+        font-size: 1rem;
 
         margin: 1rem 1rem
     }
 
     .container form div button {
         width: 100%;
-        font-size: 1.5rem;
+        height: 3rem;
+        font-size: 1rem;
     }
 }

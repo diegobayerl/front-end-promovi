@@ -37,7 +37,6 @@ function History(){
                                 </div>
                                 <strong>{item.product.description}</strong>
                             </div>
-                            <hr/>
                         </div>
                         
                     );

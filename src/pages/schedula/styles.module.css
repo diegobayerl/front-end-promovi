@@ -85,6 +85,8 @@
 
     .buttonCreate {
         width: 100%;
-        height: 12vh;
+        height: 8vh;
+
+        font-size: 1rem;
     }
 }
