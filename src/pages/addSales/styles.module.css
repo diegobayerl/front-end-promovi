@@ -8,6 +8,27 @@
     width: 50vw;
 }
 
+.search {
+    display: flex;
+    flex-direction: row;
+    
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.search input {
+    width: 72%;
+    height: 3rem;
+    border: none;
+    outline: none;
+    border: 1px solid var(--gray-400);
+    border-radius: 0.2rem;
+    padding-left: 1rem;
+    margin-right: 1rem;
+}
+
 .card {
     width: 100%;
     background: var(--white);
@@ -16,6 +37,7 @@
     border-radius: 0.5rem;
 
     padding: 1rem 1rem;
+    box-shadow: 0 0 8px var(--gray-400);
 }
 
 .card button {
@@ -52,7 +74,7 @@
         background: none;
         width: 100%;
 
-        padding: 0.5rem;
+        padding: 1rem;
     }
 
     .card button {

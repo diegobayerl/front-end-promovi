@@ -2,11 +2,8 @@ import { FormEvent, useState } from "react";
 import Header from "../../components/header";
 import styles from "./styles.module.css";
 import { api } from "../../services/api";
-import { useNavigate } from "react-router-dom";
-
 
 function CreateSchedula(){
-    const navigate = useNavigate();
 
     const user_id = localStorage.getItem('auth.user_id');
     const company_id = localStorage.getItem('id.company');
@@ -33,7 +30,7 @@ function CreateSchedula(){
             date,
         })
 
-        navigate('/home')
+        history.back();
     }
 
     return (
