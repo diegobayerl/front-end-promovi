@@ -5,12 +5,14 @@ import { AuthContext } from "../../contexts/AuthContext";
 import logoPromovi from '../../assets/logo-promovi.svg';
 import styles from './styles.module.css';
 
-import { Lock, Person } from "@mui/icons-material";
+import { Person, Visibility, VisibilityOff } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 export default function Home() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const [visible, setVisible] = useState(false);
 
   const { signIn } = useContext(AuthContext);
 
@@ -44,14 +46,21 @@ export default function Home() {
           </div>
           <div>
             <input 
-              type="password"
+              type={visible ? "text" : "password"}
               placeholder="Password"
               value={password} 
               onChange={
                 event => setPassword(event.target.value)
               }
             />
-            <Lock />
+
+            {visible ? (
+                <Visibility onClick={() => setVisible(false)} />
+            ):( 
+                <VisibilityOff onClick={() => setVisible(true)} />
+            )}
+
+            
           </div>
           <button type="submit">Entrar</button>
         </form>

@@ -65,19 +65,22 @@ export function AuthProvider({children}: AuthProviderProps){
             const response = await api.post('session', {
                 email,
                 password,
-            });
-
+            })
+                      
             await api.get(`/company/employee/${response.data.user.id}`).catch(err => {
                 errEmplyee = err.response.status;
             });
             
             localStorage.setItem("auth.token", response.data.token);
+            
             localStorage.setItem("auth.refresh_token", response.data.refresh_token);
+            
             localStorage.setItem("auth.user_id", response.data.user.id);
-
+            
             setUser(response.data.user);
+            
+            api.defaults.headers["Authorization"] = `Bearer ${response.data.token}`;
 
-            api.defaults.headers["Authorization"] = `Bearer ${response.data.token}`
             if(errEmplyee === 500){
                 window.alert("Usuário ainda não possui vínculo com empresa no sistema: Comunicar contratante")
             } else {
@@ -85,7 +88,7 @@ export function AuthProvider({children}: AuthProviderProps){
             }
             
         } catch (err) {
-            console.log(err);
+            window.alert("Email/Senha incorreto!")
         }
     }
 
