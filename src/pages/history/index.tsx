@@ -20,14 +20,14 @@ function History(){
             <Header status={false} pageName='Histórico de vendas' goBack={true}/>
             <div className={styles.body}>
             {!sales ? (
-                <>
+                <>  
                     <ShimmerLoader />
                     <ShimmerLoader />
                     <ShimmerLoader />
                 </>
             ):(
                <>
-                {sales.map(item => {
+                {sales.length != 0 ? (sales.map(item => {
                     return (
                         <div className={styles.boxContainer} key={item.id}>
                             <div className={styles.card}>
@@ -40,7 +40,12 @@ function History(){
                         </div>
                         
                     );
-                })}
+                })):(
+                    <div className={styles.noSale}>
+                        <h3>Nenhuma venda realizada</h3>
+                        <h3>😃👍</h3>
+                    </div>
+                )}
                 </>
             )}
             </div>

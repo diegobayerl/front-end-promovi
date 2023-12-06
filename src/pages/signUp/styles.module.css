@@ -67,20 +67,21 @@
         width: 100%;
         background: none;
 
-        padding: 1rem 2rem 1rem 2rem;
+        padding: 1rem 1rem 1rem 1rem;
         box-shadow: 0 0 0;
     }
 
     .box form input {
-        height: 4rem;
+        height: 3rem;
         background: var(--white);
     }
 
     .box form label {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .box form button[type='submit'] {
-        height: 4rem;
+        height: 3rem;
+        font-size: 1rem;
     }
 }
