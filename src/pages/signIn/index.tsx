@@ -68,7 +68,7 @@ export default function Home() {
           <button>Esqueci minha senha</button>
           <hr/>
           <div>
-            <Link to='signUp'>Não possui uma conta ?</Link>
+            <Link to='signUp'>Não possui uma conta ? "Não implementado"</Link>
           </div>
         </div>
       </div>
