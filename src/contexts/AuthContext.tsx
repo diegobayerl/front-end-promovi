@@ -59,8 +59,6 @@ export function AuthProvider({children}: AuthProviderProps){
 
     async function signIn({email, password}: Data){
 
-        let errEmplyee;
-
         try {
             const response = await api.post('session', {
                 email,
